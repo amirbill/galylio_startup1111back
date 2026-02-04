@@ -1,0 +1,30 @@
+# Dependencies
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+.venv/
+
+# Environment variables (SENSITIVE!)
+.env
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Test & Debug files
+*.json
+!package.json
+debug_*.py
+inspect_*.py
+verify_*.py
+verify_*.txt
+
+# OS files
+.DS_Store
+Thumbs.db
