@@ -48,7 +48,7 @@ async def signup(user: UserCreate, background_tasks: BackgroundTasks, db=Depends
     user_dict["password_hash"] = get_password_hash(user.password)
     del user_dict["password"]
     user_dict["verification_code"] = verification_code
-    user_dict["is_verified"] = False
+    user_dict["is_verified"] = True
     
     new_user = User(**user_dict)
     user_to_insert = new_user.dict(by_alias=True)
@@ -56,8 +56,8 @@ async def signup(user: UserCreate, background_tasks: BackgroundTasks, db=Depends
         del user_to_insert["_id"]
     await db.users.insert_one(user_to_insert)
     
-    # Use background task for email
-    background_tasks.add_task(send_verification_email, user.email, verification_code)
+    # Verification email removed as per request
+    # background_tasks.add_task(send_verification_email, user.email, verification_code)
 
     return new_user
 
